@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Simple Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome!</h1>
+    </header>
+    <main>
+        <p>This is a simple Flask web page.</p>
+
+        <h2>Weekly Activity</h2>
+        <canvas id="activityChart" width="400" height="200"></canvas>
+
+        <script>
+            const ctx = document.getElementById('activityChart');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ chart_labels | safe }},
+                    datasets: [{
+                        label: 'Visits',
+                        data: {{ chart_values | safe }},
+                        backgroundColor: 'rgba(44, 62, 80, 0.7)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        </script>
+
+        <h2>Say Hi!</h2>
+        <form action="{{ url_for('say_hi') }}" method="post" class="hi-form">
+            <input type="text" name="name" placeholder="Your name" required>
+            <textarea name="message" placeholder="Say something..." required></textarea>
+            <button type="submit">Send</button>
+        </form>
+
+        <h2>Messages</h2>
+        <ul class="messages">
+            {% for msg in messages %}
+            <li class="message">
+                <p><strong>{{ msg.name }}:</strong> {{ msg.message }}</p>
+                {% if msg.reply %}
+                <p class="reply"><strong>Reply:</strong> {{ msg.reply }}</p>
+                {% else %}
+                <form action="{{ url_for('reply', index=loop.index0) }}" method="post" class="reply-form">
+                    <input type="text" name="reply" placeholder="Write a reply..." required>
+                    <button type="submit">Reply</button>
+                </form>
+                {% endif %}
+            </li>
+            {% else %}
+            <li>No messages yet — be the first to say hi!</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
