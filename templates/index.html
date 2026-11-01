@@ -13,6 +13,25 @@
     <main>
         <p>This is a simple Flask web page.</p>
 
+        <div class="gallery">
+            <figure>
+                <img src="{{ url_for('static', filename='images/windsurfing.jpg') }}" alt="Windsurfing" onerror="this.src='https://placehold.co/300x200?text=Windsurfing'">
+                <figcaption>Windsurfing</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ url_for('static', filename='images/cycling.jpg') }}" alt="Cycling" onerror="this.src='https://placehold.co/300x200?text=Cycling'">
+                <figcaption>Cycling</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ url_for('static', filename='images/computing.jpg') }}" alt="Computing" onerror="this.src='https://placehold.co/300x200?text=Computing'">
+                <figcaption>Computing</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ url_for('static', filename='images/gym.jpg') }}" alt="Gym" onerror="this.src='https://placehold.co/300x200?text=Gym'">
+                <figcaption>Gym</figcaption>
+            </figure>
+        </div>
+
         <h2>Weekly Activity</h2>
         <canvas id="activityChart" width="400" height="200"></canvas>
 

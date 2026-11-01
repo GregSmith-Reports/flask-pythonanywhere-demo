@@ -19,6 +19,34 @@ main p {
     margin: 2em auto;
 }
 
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    margin: 1.5em auto;
+    max-width: 700px;
+}
+
+.gallery figure {
+    margin: 0;
+    text-align: center;
+}
+
+.gallery img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.gallery figcaption {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 0.3em;
+}
+
 .hi-form {
     display: flex;
     flex-direction: column;
